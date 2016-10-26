@@ -1,5 +1,20 @@
 const http = require('http')
 const port = 3000
+const  os = require('os');
+
+
+let interfaces = os.networkInterfaces();
+let addresses = [];
+for (let k in interfaces) {
+	for (let k2 in interfaces[k]) {
+		let address = interfaces[k][k2];
+		if (address.family === 'IPv4' && !address.internal) {
+			addresses.push(address.address);
+		}
+	}
+}
+
+console.log(addresses);
 
 const requestHandler = (request, response) => {
 	console.log(request.url)
