@@ -18,19 +18,19 @@ console.log(addresses);
 
 const requestHandler = (request, response) => {
 	console.log(request.url)
-	if(request.url == "/KILL_SERVICE"){
+	if(request.url.includes("KILL_SERVICE")){
 		response.end("Service Shutdown..\n");
 		process.exit();
 	}
-	else if(request.url == "/blocker")
+	else if(request.url.includes("HELO"))
 	{
-		for(var i = 0 ; i < 4000000000 ; i++){
-			var j = 1;
-		}
-		response.end("Hello Blocker!\n")
+		response.end(request.url.slice(1,request.url.length)+"\n"
+			     +"IP:"+addresses+"\n"
+			     +"PORT:"+port+"\n"
+			     +"StudentID:13323109\n")
 	}
 	else {
-		response.end("Hello Non-Blocker\n")
+		response.end("Please type 'HELO \\n' to get a valid response.\n")
 	}
 }
 
