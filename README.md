@@ -1,5 +1,9 @@
 # labtwo
 CS4032 Lab for creating a server that spins a thread from a pool for each new client.
+By using Node this is done under the hood usually allocating 4 threads per I/O process 
+while the event loop handles the actual execution of code (implemented in libuv).
+This is oppose to a thread being created to execute the code specially for each client.
+
 
 | Name             | StudentID  |
 | ---------------- |:----------:|
