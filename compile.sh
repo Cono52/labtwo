@@ -10,5 +10,8 @@ else
 fi
 printf "\n\n"
 
+#install dependencies
+npm install
+
 #run server
 node server
