@@ -1,7 +1,8 @@
 const net = require('net')
-const port = 3000
-const  os = require('os')
+const os = require('os')
+const toobusy = require('toobusy-js')
 
+const port = 3000
 /*Get IP address*/
 let interfaces = os.networkInterfaces()
 let addresses = []
@@ -17,24 +18,29 @@ for (let k in interfaces) {
 console.log(addresses)
 
 const requestHandler = (sock) => {
-	console.log('CONNECTED: ' + sock.remoteAddress +':'+ sock.remotePort)
+	if(toobusy()){
+		sock.destroy();
+	}
+	else
+	{
+		console.log('CONNECTED: ' + sock.remoteAddress +':'+ sock.remotePort)
+		sock.on('data', function(data) {
+			if(data.includes("HELO")){
+				sock.write(data
+					+"IP:"+addresses+"\n"
+					+"Port:"+port+"\n"
+					+"StudentID:13323109\n")
 
-	sock.on('data', function(data) {
-		if(data.includes("HELO")){
-			sock.write(data
-				+"IP:"+addresses+"\n"
-				+"Port:"+port+"\n"
-				+"StudentID:13323109\n")
+			}
+			else if(data.includes("KILL_SERVICE")){
+				sock.destroy();
+			}
+		})
 
-		}
-		else if(data.includes("KILL_SERVICE")){
-			sock.destroy();
-		}
-	})
-
-	sock.on('close', function(data) {
-		console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort)
-	})
+		sock.on('close', function(data) {
+			console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort)
+		})
+	}
 }
 
 
