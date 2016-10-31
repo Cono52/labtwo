@@ -1,0 +1,23 @@
+{
+  "name": "labtwo",
+  "version": "1.0.0",
+  "description": "simple server which will hopefully handle lots of clients",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cono52/labtwo.git"
+  },
+  "author": "Conor O'Flanagan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cono52/labtwo/issues"
+  },
+  "homepage": "https://github.com/Cono52/labtwo#readme",
+  "dependencies": {
+    "toobusy-js": "^0.5.1"
+  }
+}
