@@ -2,7 +2,18 @@ const net = require('net')
 const os = require('os')
 const toobusy = require('toobusy-js')
 
-const port = 3000
+
+/*Default port*/
+let port = 3000
+
+/*Try get specified port*/
+if(!process.argv[2]){
+	console.log("You didnt enter a port...using port 3000")
+}
+else{
+	port = process.argv[2];
+}
+
 /*Get IP address*/
 let interfaces = os.networkInterfaces()
 let addresses = []
