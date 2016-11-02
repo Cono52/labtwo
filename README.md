@@ -19,5 +19,9 @@ Some debian machines don't come installed with `sudo` so install it via `apt-get
 
 
 If you dont have Node.js on your machine run the command `$ ./compile.sh`
-This will install node.js and then run the server.	
-If you've already installed node, then just run the command `node server.js`
+This will install node.js and any dependencies.
+	
+If you've already installed node, then just run the command `$ ./start.sh portnumber`.
+
+This set-up procedure follows the exact requirments outline by the module lab instructions:
+(https://www.scss.tcd.ie/~ebarrett/lectures/cs4032/lab2.html).
